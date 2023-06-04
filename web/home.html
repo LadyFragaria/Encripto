@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/basic.css">
+    <script type="text/javascript" src="/eel.js"></script>
+    <title>encripto</title>
+</head>
+<body>
+<header>
+    <h1>Encripto V1</h1>
+    <button onclick="eel.testing_pyfunc()">Confirm conection</button>
+</header>
+<div id="button_box">
+    <h3>Profiles</h3>
+    <div id="profiles" class="buttoner"></div><br>
+    <div id="mod_profiles" class="buttoner">
+        <button onclick="showdiv('profile_creator')">+</button>
+        <button onclick="showdiv('text_direct')">Text</button>
+    </div>
+</div>
+<div id="pass_w">
+    <h3>Password</h3>
+    <label for="password">Password:</label>
+    <input type="password" id="password" Minlength ="5" placeholder="Password" height="30px">
+    <button id="password_see" onclick="toggle_passw()">😌</button>
+    <button id="password_see" onclick="clean_value('password')">x</button>
+    <div id = "del_prof_menu" class="file_menu">
+        <h3>Delete active profile</h3>
+        <p>You must type the password in the password field and remove both padlocks to delete the profile</p>
+        <div id="profile_deleting_protection" class="buttoner">
+            <button onclick="hidediv('del_prof_menu')">Cancel</button>
+            <button onclick="delete_prof()">Delete Profile</button>
+            <button id="lock_profile1" onclick='toogle_safety("profile","1")'>🔒</button>
+            <button id="lock_profile2" onclick='toogle_safety("profile","2")'>🔒</button>
+        </div>
+        <p id="profile_lock" clas="lock">DEACTIVATED</p>
+    </div>
+</div>
+<div id="text_direct" class="writing_desk">
+    <h2>Text message encryption</h2>
+    <div class="boxer">
+        <div class="text_box">
+            <h3>Text to modify</h3>
+            <textarea id="given_mess"></textarea>
+            <button onclick="clean_value('given_mess')">Clean</button>
+        </div>
+        <div class="text_box">
+            <h3>Result</h3>
+            <div id="worked_mess"></div>
+            <button onclick="clean_id('worked_mess')">Clean</button>
+        </div>
+    </div>
+    <div class="buttoner">
+        <button id="ciph_work" onclick="toogle_ciph()">Decipher</button>
+        <button onclick="text_ciph()">Start</button>
+        <button onclick="hidediv('text_direct')">x</button>
+    </div>
+</div>
+<div id="profile_box">
+
+</div>
+<div id="wb_container">
+    <div id="wb_buttons" class="buttoner">
+        <button onclick="clean_id('workbench')">Clean</button>
+        <button onclick="showdiv('del_file_menu')">Delete</button>
+        <div id = "del_file_menu" class="file_menu">
+            <h3>Delete active file</h3>
+            <p>You must type the password in the password field and remove both padlocks to delete the file</p>
+            <div id="file_deleting_protection" class="buttoner">
+                <button onclick="hidediv('del_file_menu')">Cancel</button>
+                <button onclick="delete_file()">Delete open fike</button>
+                <button id="lock_file1" onclick='toogle_safety("file","1")'>🔒</button>
+                <button id="lock_file2" onclick='toogle_safety("file","2")'>🔒</button>
+            </div>
+            <p id="file_lock">DEACTIVATED</p>
+        </div>
+    </div>
+
+    <div id="workbench">
+    
+    </div>
+</div>
+<div id="creators">
+    <h3>Create new files</h3>
+    <div id="profile_creator" class="writing_desk">
+        <h2>Create profile</h2>
+        <label>Name of profile</label>
+        <input type="text" id="new_profile">
+        <button onclick="save_profile()">Save</button>
+    </div>
+    <div id="pt_writer" class="writing_desk">
+        <h2>Write plain text</h2>
+        <label>Name of file</label>
+        <input type="text" id="pt_name"><br>
+        <label>Message</label>
+        <input type="text" id="pt_mess" maxlength="520" size="520" style="width: 90%;height: 30px;">
+        <div class="buttoner">
+            <button onclick="save_pt()">Save</button>
+            <button onclick="clean_value_s(['pt_name','pt_mess'])">Clean</button>
+            <button onclick="hidediv('pt_writer')">x</button>
+        </div>
+    </div>
+    <div id="ml_writer" class="writing_desk">
+        <h2>Write multiline text</h2>
+        <label>Name of file</label>
+        <input type="text" id="ml_name"><br>
+        <label>Message</label>
+        <textarea id="ml_mess"></textarea>
+        <div class="buttoner">
+            <button onclick="save_ml()">Save</button>
+            <button onclick="clean_value_s(['ml_name','ml_mess'])">Clean</button>
+            <button onclick="hidediv('ml_writer')">x</button>
+        </div>
+    </div>
+    <div id="bd_writer" class="writing_desk">
+        <h2>Create table</h2>
+        <label>Name of file</label>
+        <input type="text" id="bd_name"><br>
+        <h3>Table size</h3>
+        <label for="bd_cols">Columns</label>
+        <input type="number" id="bd_cols">
+        <label for="bd_rows">Rows</label>
+        <input type="number" id="bd_rows">
+        <div class="buttoner">
+            <button onclick="create_bd_wb()">Create table</button>
+            <button onclick="clean_value_s(['bd_name','bd_cols','bd_rows'])">Clean data</button>
+            <button onclick="clean_id('bd_workbench')">Clean Table</button>
+            <button onclick="hidediv('bd_writer')">x</button>
+        </div>
+        <div id="bd_workbench">
+    
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>
+        Encrypto is a symmetric key encryption application available for Windows.<br>
+        Developed by Lady Fragaria
+    </p>
+    <p>
+        <a href="https://github.com/LadyFragaria/Encripto" target="_blank">About the project</a><br>
+        <a href="https://linktr.ee/ladyfragaria" target="_blank">My linktr.ee</a><br>
+        v1.0.1
+    </p>
+</footer>
+
+<script type="text/javascript">
+    //┎୨♡୧┈┈┈┈ profile menu ┈┈┈┈୨♡୧┒
+    async function hidediv(ids){
+        document.getElementById(ids).style.display = "none";
+    }
+
+    async function showdiv(ids){
+        document.getElementById(ids).style.display = "block";
+    }
+
+    async function clean_id(idis){
+        document.getElementById(idis).innerHTML = "";
+    }
+
+    async function clean_value(idis){
+        document.getElementById(idis).value = "";
+    }
+
+    async function clean_value_s(idis){
+        idis.forEach(element => clean_value(element));
+    }
+
+    async function toggle_passw(){
+        passw = document.getElementById("password");
+        passb = document.getElementById("password_see");
+        
+        if (passb.innerHTML=="👁️"){
+            passw.type = "password";
+            passb.innerHTML = "😌";
+
+        }else {
+            passw.type = "text";
+            passb.innerHTML = "👁️";
+        }
+    }
+
+    //┎୨♡୧┈┈┈┈ run works ┈┈┈┈୨♡୧┒
+    async function run(){
+        hidediv("pt_writer");
+        hidediv("bd_writer");
+        hidediv("ml_writer");
+        hidediv("profile_creator");
+        hidediv("del_prof_menu");
+        hidediv("del_file_menu");
+        hidediv("text_direct");
+        let profiles = await eel.form_profiles()();
+        document.getElementById("profiles").innerHTML = profiles.toString();
+    }
+    run();
+
+    async function charge_profile(prof){
+        run();
+        clean_id("workbench");
+        document.getElementById("password").value = "";
+        let info = await eel.charge_profile(prof)();
+        document.getElementById('profile_box').innerHTML = info.toString();
+        document.getElementById("workbench").innerHTML = "";
+    }
+
+    async function check_passw(){
+        let passw= document.getElementById("password").value;
+        if (passw==""){
+            document.getElementById("workbench").innerHTML = "Escribe una contraseña valida";
+        }
+    }
+
+    //┎୨♡୧┈┈┈┈ ciph works ┈┈┈┈୨♡୧┒
+    async function toogle_ciph(){
+        button = document.getElementById("ciph_work");
+        if (button.innerHTML=="Decipher"){
+            button.innerHTML="Cipher";
+        }else{
+            button.innerHTML="Decipher";
+        }
+    }
+
+    async function text_ciph(){
+        button = document.getElementById("ciph_work");
+        text = document.getElementById("given_mess").value;
+        passw = document.getElementById("password").value;
+        if (button.innerHTML=="Decipher"){
+            let message = await eel.deciph_text(passw,text)();
+            document.getElementById("worked_mess").innerHTML = message.toString();
+        }else{
+            let message = await eel.ciph_text(passw,text)();
+            document.getElementById("worked_mess").innerHTML = message.toString();
+        }
+    }
+
+
+    //┎୨♡୧┈┈┈┈ save works ┈┈┈┈୨♡୧┒
+    async function create_test(){
+        check_passw();
+        
+        let message = await eel.create_test(document.getElementById("profile_name").innerHTML,
+                                    document.getElementById("password").value)();
+        document.getElementById("workbench").innerHTML = message.toString();
+        charge_profile(document.getElementById("profile_name").innerHTML);
+    }
+
+    async function save_profile(){
+        check_passw();
+       let message = await eel.save_profile(document.getElementById("new_profile").value,
+                                            document.getElementById("password").value)();
+        document.getElementById("workbench").innerHTML = message.toString();
+        run()
+    }
+
+    async function save_pt(){
+        check_passw();
+        let message = await eel.save_pt(document.getElementById("profile_name").innerHTML,
+                                    document.getElementById("password").value,
+                                    document.getElementById("pt_name").value,
+                                    document.getElementById("pt_mess").value)();
+        document.getElementById("workbench").innerHTML = message.toString();
+        charge_profile(document.getElementById("profile_name").innerHTML);
+    }
+
+    async function create_bd_wb(){
+        check_passw();
+        let message = await eel.create_bd_wb(document.getElementById("bd_cols").value,
+                                             document.getElementById("bd_rows").value,
+                                             document.getElementById("bd_name").value)();
+        console.log(message)
+        document.getElementById("bd_workbench").innerHTML = message.toString();
+    }
+
+    async function save_bd(cols,rows,file){
+        check_passw();
+        let all_point=[];
+        for (let i = 0; i < (rows); i++) {
+            let rpoint = [];
+            for (let x = 0; x < (cols); x++){
+                let point = document.getElementById("cell" + i + "_" + x).value
+                if (point.trim().length === 0){
+                    rpoint.push("n/d");
+                }else{
+                    rpoint.push(document.getElementById("cell" + i + "_" + x).value);
+                }
+            }
+            all_point.push(rpoint);
+        }
+        let message = await eel.save_bd(document.getElementById("profile_name").innerHTML,
+                                    document.getElementById("password").value,
+                                    file,
+                                    all_point)();
+        document.getElementById("workbench").innerHTML = message.toString();
+        charge_profile(document.getElementById("profile_name").innerHTML);
+    }
+
+    async function save_ml(){
+        check_passw();
+        let message = await eel.save_ml(document.getElementById("profile_name").innerHTML,
+                                    document.getElementById("password").value,
+                                    document.getElementById("ml_name").value,
+                                    document.getElementById("ml_mess").value)();
+        document.getElementById("workbench").innerHTML = message.toString();
+        charge_profile(document.getElementById("profile_name").innerHTML);
+    }
+
+    //┎୨♡୧┈┈┈┈ read works ┈┈┈┈୨♡୧┒
+    async function read_pt(file){
+        check_passw();
+        let message = await eel.read_pt(document.getElementById("profile_name").innerHTML,
+                                        document.getElementById("password").value,
+                                        file)();
+        document.getElementById("workbench").innerHTML = message.toString();
+    }
+
+    async function read_bd(file){
+        check_passw();
+        let message = await eel.read_bd(document.getElementById("profile_name").innerHTML,
+                                        document.getElementById("password").value,
+                                        file)();
+        document.getElementById("workbench").innerHTML = message.toString();
+    }
+
+    async function read_ml(file){
+        check_passw();
+        let message = await eel.read_ml(document.getElementById("profile_name").innerHTML,
+                                        document.getElementById("password").value,
+                                        file)();
+        document.getElementById("workbench").innerHTML = message.toString();
+    }
+    
+    //┎୨♡୧┈┈┈┈ delete works ┈┈┈┈୨♡୧┒
+
+    async function toogle_safety(work,num){
+        work_button = document.getElementById("lock_"+ work + num);
+        work_span = document.getElementById(work + "_lock");
+        if ( work_button.innerHTML == "🔒"){
+            work_button.innerHTML = "🔓";
+            if (work_span.innerHTML== "DEACTIVATED"){
+                work_span.innerHTML = "FIRST ACTIVATION";
+            }else{
+                work_span.innerHTML = "ACTIVATED";
+            }
+        }else{
+            work_button.innerHTML = "🔒";
+            if (work_span.innerHTML== "FIRST ACTIVATION"){
+                work_span.innerHTML = "DEACTIVATED";
+            }else{
+                work_span.innerHTML = "FIRST ACTIVATION";
+            }
+        }
+    }
+
+    async function delete_prof(){
+        check_passw();
+        if (document.getElementById("profile_lock").innerHTML=="ACTIVATED"){
+            let message = await eel.del_prof(document.getElementById("profile_name").innerHTML,
+                                         document.getElementById("password").value)();
+            document.getElementById("workbench").innerHTML = message.toString();
+            toogle_safety("profile","1");
+            toogle_safety("profile","2");
+            run();
+        }
+    }
+
+    async function delete_file(){
+        check_passw();
+        if (document.getElementById("file_lock").innerHTML=="ACTIVATED"){
+            let message = await eel.del_file(document.getElementById("profile_name").innerHTML,
+                                             document.getElementById("file_name").innerHTML,
+                                             document.getElementById("password").value)();
+            document.getElementById("workbench").innerHTML = message.toString();
+            toogle_safety("file","1");
+            toogle_safety("file","2");
+            charge_profile(document.getElementById("profile_name").innerHTML);
+        }
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+*{
+    font-family: 'Poppins', sans-serif;
+    color: #efdef8;
+}
+
+body{
+    margin:0%;
+    padding:2em;
+    background-color: #48404d;
+}
+
+h3{
+    padding-top: 0%;
+}
+
+button{
+    padding: 1em;
+    background-color: #8a677b;
+    border-color: #884f70;
+    display: inline-block;
+}
+
+input {
+    background-color: #746c79;
+}
+
+textarea {
+    background-color: #746c79;
+    width: 100%;
+    height: 300px;
+    scrollbar-color: #48404d #746c79;
+}
+
+footer{
+    width: 100%;
+    background-color: #695562;
+    display: inline-flex;
+    justify-content: space-around;
+}
+
+footer p{
+    width: 40%;
+}
+
+.buttoner{
+    display: inline-flex;
+    gap: 1em;
+    padding: 1em;
+    background-color: #695562;
+    width:fit-content;
+    flex-wrap: wrap;
+}
+
+.file_menu{
+    padding: 1em;
+    margin-bottom: 1rem;
+    background-color: #5a4b55;
+    width: max-content;
+    display: inline-block;
+}
+
+.file_menus{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    width: 100%;
+}
+
+.writing_desk {
+    padding: 2em;
+    background-color: #5a4b55;
+    margin-bottom: 2em;
+    display: inline-block;
+}
+
+.text_box {
+    width: 50%;
+    padding-bottom: 2em;
+    height: fit-content;
+}
+
+.boxer{
+    display: inline-flex;
+    width: 100%;
+    gap: 2em;
+}
+
+#workbench{
+    padding: 3em;
+    margin: 2em;
+    background-color: #5a4b55;
+}
+
+#wb_container{
+    background-color: #695562;
+}
+
+#creators {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#worked_mess{
+    width: 100%;
+    height: fit-content;
+    min-height: 300px;
+    overflow-x: scroll;
+    scrollbar-color: #48404d #746c79;
+}
